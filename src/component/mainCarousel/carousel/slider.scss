@@ -1,0 +1,47 @@
+#main_container_carousel {
+  &:hover {
+    .slick-prev::before,
+    .slick-next::before {
+      display: block;
+    }
+  }
+
+  .slick-prev {
+    left: 10px;
+    z-index: 2;
+    color: white;
+
+    &::before {
+      font-size: 40px;
+      display: none;
+    }
+  }
+
+  .slick-next {
+    right: 28px;
+    z-index: 2;
+    color: white;
+
+    &::before {
+      font-size: 40px;
+      display: none;
+    }
+  }
+
+  .slick-dots {
+    bottom: 30px;
+
+    & > li > button::before {
+      font-size: 12px;
+      margin: 0px !important;
+      color: white;
+    }
+    .slick-active > button::before {
+      color: white !important;
+    }
+  }
+
+  & img {
+    width: 100%;
+  }
+}

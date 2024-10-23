@@ -1,0 +1,53 @@
+@import "/src/styles/variables.scss";
+
+.product_container {
+  color: #171717 !important;
+  display: flex;
+  padding: 0;
+  position: relative;
+  background: #fff;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  height: 428px;
+  border: 1px solid rgba(0, 56, 10, 0.3019607843);
+  border-radius: 11px;
+  width: 270px;
+  min-width: 220px;
+  max-width: 270px;
+  margin-right: 48px;
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: sans-serif;
+    height: 100%;
+    width: 100%;
+    justify-content: space-between;
+
+    &>span{
+        width: 93%;
+        margin: 7px 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: .5rem;
+
+        &:nth-child(1)>p:nth-child(1){
+            color: $mainGreenColor;
+           font-size: 14px;
+        }
+
+        &:nth-child(1)>p:nth-child(2){
+            font-size: 19px;
+            text-align: center;
+        }
+    }
+
+    &>span:nth-child(2)>p{
+        font-size: 20px;
+        font-weight: bold;
+    }
+  }
+}

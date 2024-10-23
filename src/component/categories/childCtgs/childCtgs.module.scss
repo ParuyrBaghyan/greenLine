@@ -1,0 +1,68 @@
+@import "/src/styles/variables.scss";
+
+
+
+.child_ctgs_container {
+    display: grid;
+    grid-template-columns: repeat((3, 1fr));
+    gap: 2rem;
+    height: 93%;
+    overflow: auto;
+    padding: 15px 30px;
+    width: 80%;
+    font-family: sans-serif;
+
+    .child {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+
+      & > p {
+        font-size: 18px;
+        color: $mainGreenColor;
+        cursor: pointer;
+      }
+
+      .subsection_children {
+        display: flex;
+        flex-direction: column;
+        font-size: 15px;
+        gap: 0.5rem;
+
+        & > span {
+          transition: 0.3s;
+          cursor: pointer;
+          &:hover {
+            font-weight: 700;
+          }
+        }
+      }
+    }
+
+    &::-webkit-scrollbar {
+      width: 2px; /* Width of the scrollbar */
+    }
+
+    &::-webkit-scrollbar-button {
+      display: none; /* Hide the scrollbar buttons */
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1; /* Background color of the scrollbar track */
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #888; /* Color of the scrollbar thumb */
+      border-radius: 10px; /* Rounded corners of the scrollbar thumb */
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: #555; /* Color of the scrollbar thumb when hovered */
+    }
+
+    /* Firefox-specific styling for .parent-categories */
+    & {
+      scrollbar-width: thin; /* Thinner scrollbar */
+      scrollbar-color: #888 #f1f1f1; /* Thumb and track colors */
+    }
+  }

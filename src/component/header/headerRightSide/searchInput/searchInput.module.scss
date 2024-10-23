@@ -1,0 +1,31 @@
+@import "/src/styles/variables.scss";
+
+.search_input_container {
+  background-color: $searchInputFon;
+  position: relative;
+  width: 358px;
+
+  height: 56px;
+  display: flex;
+  align-items: center;
+  border-radius: 30px;
+  justify-content: space-evenly;
+
+  & > input {
+    width: 68%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 16px;
+  }
+
+  & > svg:nth-child(1) {
+    font-size: 25px;
+    cursor: pointer;
+  }
+
+  & > svg:nth-child(3) {
+    font-size: 14px;
+    cursor: pointer;
+  }
+}

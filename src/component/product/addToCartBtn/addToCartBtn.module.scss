@@ -1,0 +1,13 @@
+@import "/src/styles/variables.scss";
+
+
+.add_to_cart_btn{
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    background-color: $mainGreenColor;
+    color: white;
+    font-family: sans-serif;
+    height: 36px;
+    font-size: 16px;
+}

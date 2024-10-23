@@ -1,0 +1,31 @@
+@import "/src/styles/variables.scss";
+
+
+.category_button{
+    background-color: $mainGreenColor;
+    width: 187px;
+    min-width: 187px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    border-radius: 25px;
+    border: none;
+    color: #fff;
+    margin-right: auto;
+    margin-left: 30px;
+    cursor: pointer;
+
+
+    &>span:nth-child(1){
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: .1rem;
+    }
+
+    &>svg{
+        font-size: 10px;
+    }
+}

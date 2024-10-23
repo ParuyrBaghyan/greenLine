@@ -1,0 +1,10 @@
+.main_carousel_bottom{
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+    &>img{
+        cursor: pointer;
+        width: 100%;
+        height: auto;
+    }
+}

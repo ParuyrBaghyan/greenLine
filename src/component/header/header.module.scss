@@ -1,0 +1,15 @@
+@import "/src/styles/variables.scss";
+
+
+.main_header_container{
+    padding: 15px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.additionalClass{
+    position: fixed;
+    z-index: 9999;
+    top: 0%;
+}

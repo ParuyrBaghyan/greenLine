@@ -1,0 +1,19 @@
+.main_carousel_top {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-row: 2;
+
+  & > div:nth-child(1) {
+    width: 100%;
+    cursor: pointer;
+    grid-column: 1/3;
+    grid-row: 1/3;
+  }
+
+  & > img {
+    grid-column: 3/4;
+    width: 100%;
+  }
+
+}

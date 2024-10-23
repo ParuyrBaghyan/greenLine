@@ -1,0 +1,50 @@
+@import "/src/styles/variables.scss";
+
+.mobile_app_container {
+  margin-top: 10vh;
+  width: 100%;
+  height: auto;
+  background: $softGreenFon;
+  display: flex;
+   border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  & > img {
+    height: auto;
+    width: 45%;
+  }
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    height: 100%;
+    padding: 61px 0 0 48px;
+ 
+    gap: 1rem;
+    font-family: sans-serif;
+
+    & > span {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+
+      & > p {
+        font-size: 55px;
+        font-weight: 600;
+        color: $mainGreenColor;
+      }
+
+      & > span {
+        font-size: 18px;
+        font-weight: 600;
+        width: 47%;
+      }
+    }
+
+
+    &>div{
+        display: flex;
+        gap: 1rem;
+    }
+  }
+}

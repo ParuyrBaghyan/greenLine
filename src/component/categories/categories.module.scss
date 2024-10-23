@@ -1,0 +1,23 @@
+.categories_container {
+  position: absolute;
+  top: 140px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  display: flex;
+  padding: 0 180px;
+  background: rgba(0, 0, 0, 0.521);
+  height: 100vh;
+
+  &>div{
+    width: 100%;
+  }
+
+  .categories_main_container {
+    background-color: #f8f8f8;
+    width: 1550px;
+    height: 70vh;
+    max-height: 70vh;
+    display: flex;
+  }
+}

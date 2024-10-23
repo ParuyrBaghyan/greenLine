@@ -1,0 +1,13 @@
+@import "/src/styles/variables.scss";
+
+
+.main_header_right_side{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+
+    &>svg{
+        font-size: 35px;
+        cursor: pointer;
+    }
+}

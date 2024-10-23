@@ -1,0 +1,11 @@
+.brand_carousel{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &>h2{
+        font-family: sans-serif;
+        font-weight: 700;
+        font-size: 25px;
+    }
+}

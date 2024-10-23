@@ -1,0 +1,18 @@
+{
+  "header": {
+    "categories": "Categories",
+    "signIn": "Sign in",
+    "search": "Search"
+  },
+
+  "trendingBrands": "Trending brands",
+
+  "mobileApp": {
+    "title": "Always next to you",
+    "download": "Download our application and make orders from you phone"
+  },
+
+  "product":{
+    "addToCart":"Add to basket"
+  }
+}

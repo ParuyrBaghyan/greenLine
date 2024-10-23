@@ -1,0 +1,42 @@
+@import "/src/styles/variables.scss";
+
+
+#brand_carousel {
+
+    .arrow{
+        top: -20%;
+        background: $arrowBtnColor;
+        display: block;
+        position: absolute;
+        width: 35px;
+        height: 35px;
+        font-size: 25px;
+        border-radius: 50%;
+        color: rgba(116, 114, 114, 0.484);
+        position: absolute;
+        cursor: pointer;
+    }
+  .slick_next {
+    left: 96% !important;
+
+    &>svg{
+        position: absolute;
+        top: 50%;
+        left: 54%;
+        transform: translate(-50%,-50%);
+    }
+  }
+
+  .slick_prev {
+    left: 93% !important;
+  
+  
+
+    &>svg{
+        position: absolute;
+        top: 50%;
+        left: 64%;
+        transform: translate(-50%,-50%);
+    }
+  }
+}
