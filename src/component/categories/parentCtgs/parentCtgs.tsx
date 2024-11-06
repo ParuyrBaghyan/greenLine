@@ -2,6 +2,9 @@ import { useGetParentCategoriesQuery } from "@/services/categories/categories";
 import style from "./parentCtgs.module.scss";
 import { useDispatch } from "react-redux";
 import { showHideCtgDD } from "@/store/categories/categoriesSlice";
+import ParentCtgsLoader from "./parentCtgsLoader/parentCtgsLoader";
+import { ProductSortEnum } from "@/types/enums";
+import { useUpdateUrl } from "@/hooks/useUpdateUrl";
 
 interface ParentCtgsProps {
   getParentId: (parentId: number) => void;
@@ -9,11 +12,24 @@ interface ParentCtgsProps {
 
 export default function ParentCtgs({ getParentId }: ParentCtgsProps) {
   const { data, isError, isLoading } = useGetParentCategoriesQuery(null);
-
   const dispatch = useDispatch();
+  const { updateUrl } = useUpdateUrl();
 
-  function showCtgDDHandler() {
+  function parentCtgActionsHandler(parentCtg: ParentCtgModel) {
     dispatch(showHideCtgDD());
+
+    updateUrl({
+      id: parentCtg.id,
+      sortBy: ProductSortEnum.PriceHighToLow,
+      section: "categories",
+      page: 1,
+      priceTo: 0,
+      priceFrom: 0
+    });
+  }
+
+  if (isLoading) {
+    return <ParentCtgsLoader />;
   }
 
   return (
@@ -22,7 +38,7 @@ export default function ParentCtgs({ getParentId }: ParentCtgsProps) {
         return (
           <p
             key={parentCtg.id}
-            onClick={showCtgDDHandler}
+            onClick={() => parentCtgActionsHandler(parentCtg)}
             onMouseOver={() => getParentId(parentCtg.id)}
           >
             {parentCtg.name}

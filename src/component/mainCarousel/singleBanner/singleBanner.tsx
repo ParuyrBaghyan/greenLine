@@ -1,5 +1,5 @@
 import Image from "next/image";
-import myImageLoader from "@/utils/imageLoader";
+import myImageLoader from "@/helperFunctions/imageLoader";
 
 interface BannerImageProps {
   src: string;

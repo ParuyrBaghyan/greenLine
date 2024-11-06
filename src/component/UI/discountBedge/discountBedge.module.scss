@@ -1,0 +1,16 @@
+@import "/src/styles/variables.scss";
+
+
+.discount_bedge{
+    font-weight: bold;
+    letter-spacing: .7px;
+    padding: 3px 5px;
+    position: absolute !important;
+    background: $darkShadeOfRed;
+    color: white;
+    z-index: 3;
+    left: 10px;
+    top: 10px;
+    border-radius: 8px;
+    font-size: 15px;
+}

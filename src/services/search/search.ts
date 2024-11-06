@@ -1,12 +1,17 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import Headers from '../headers'
+import Headers from "../headers";
 
 export const searchApi = createApi({
   reducerPath: "searchApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://web-backend.innodream.com/api/",
     prepareHeaders: (headers) => {
-      Headers(headers, "application/json", "https://greenline.yerevan-city.am", "3");
+      Headers(
+        headers,
+        "application/json",
+        "https://greenline.yerevan-city.am",
+        "3"
+      );
       return headers;
     },
   }),
@@ -24,7 +29,13 @@ export const searchApi = createApi({
       }),
       providesTags: ["searchApi"],
     }),
+    getFreqSearched: builder.query({
+      query: () => `/Page/Get?type=2`,
+      providesTags: ["searchApi"],
+      keepUnusedDataFor: 300,
+    }),
   }),
 });
 
-export const { useLazyGetSearchResultQuery } = searchApi;
+export const { useLazyGetSearchResultQuery, useGetFreqSearchedQuery } =
+  searchApi;

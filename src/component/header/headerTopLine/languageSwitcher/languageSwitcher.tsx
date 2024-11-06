@@ -43,11 +43,13 @@ const LanguageSwitcher: React.FC = () => {
     if (typeof window !== "undefined") {
       localStorage.setItem("langId", langId.toString());
     }
-    router.push(pathname, { locale: selectedLanguage.locale });
-    
+    const loc = window.location.pathname;
+
+    router.push(pathname + window.location.search, { locale: selectedLanguage.locale });
+
     setTimeout(() => {
-      window.location.reload()
-    },500)
+      window.location.reload();
+    }, 500);
   }
 
   function toggleDropdown() {

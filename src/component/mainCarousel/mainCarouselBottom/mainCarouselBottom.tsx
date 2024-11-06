@@ -10,7 +10,7 @@ export default function MainCarouselBottom() {
   if (isLoading) return null;
   return (
     <div className={style.main_carousel_bottom}>
-      {data.data.promoCollections.map((promo: Promo) => {
+      {data?.data?.promoCollections.map((promo: Promo) => {
         return (
           <UnderCarouselItem
           key={promo.id}

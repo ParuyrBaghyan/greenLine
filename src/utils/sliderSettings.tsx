@@ -1,6 +1,6 @@
 import { MdArrowForwardIos, MdArrowBackIos } from "react-icons/md";
 
-function SampleNextArrow(props: { onClick: any }) {
+export function SampleNextArrow(props: { onClick: any }) {
   const { onClick } = props;
   return (
     <span className="slick_next arrow">
@@ -9,7 +9,7 @@ function SampleNextArrow(props: { onClick: any }) {
   );
 }
 
-function SamplePrevArrow(props: { onClick: any }) {
+export function SamplePrevArrow(props: { onClick: any }) {
   const { onClick } = props;
   return (
     <span className="slick_prev arrow">
@@ -22,6 +22,19 @@ export const BrandCarouselSettings = {
   dots: false,
   infinite: true,
   slidesToShow: 6,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 2000,
+  pauseOnHover: true,
+  variableWidth: true,
+  nextArrow: <SampleNextArrow onClick={undefined} />,
+  prevArrow: <SamplePrevArrow onClick={undefined} />,
+};
+
+export const SpecialItemsSliderSettings = {
+  dots: false,
+  infinite: true,
+  slidesToShow: 5,
   slidesToScroll: 1,
   autoplay: true,
   autoplaySpeed: 2000,

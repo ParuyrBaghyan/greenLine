@@ -1,0 +1,33 @@
+@import "/src/styles/mixin.scss";
+@import "/src/styles/variables.scss";
+
+.sub_categories_filter_container {
+  @include filter_type_container;
+
+  &>span {
+    font-size: 19px;
+    cursor: pointer;
+    letter-spacing: 0.7px;
+    display: flex;
+    align-items: center;
+
+    & svg {
+      font-size: 25px;
+    }
+  }
+
+  &>div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    &>p {
+      cursor: pointer;
+      font-size: 17px;
+
+      &:hover {
+        @include hoverForFIlterItem
+      }
+    }
+  }
+}

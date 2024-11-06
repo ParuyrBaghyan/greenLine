@@ -5,8 +5,13 @@ import { setupListeners } from "@reduxjs/toolkit/query";
 import { categoriesApi } from "@/services/categories/categories";
 import { tokenApi } from "@/services/token";
 import categoriesReducer from "./categories/categoriesSlice";
+import searchReducer from "./search/search";
+import productsRouter from "./products/products";
+import filterRouter from "./filtration/filtration";
 import { bannersApi } from "@/services/banners/banners";
 import { brandsApi } from "@/services/brands/brands";
+import { productsApi } from "@/services/products/products";
+import { filtrationApi } from "@/services/filtration/filtration";
 
 export const store = configureStore({
   reducer: {
@@ -15,7 +20,12 @@ export const store = configureStore({
     [tokenApi.reducerPath]: tokenApi.reducer,
     [brandsApi.reducerPath]: brandsApi.reducer,
     [bannersApi.reducerPath]: bannersApi.reducer,
+    [productsApi.reducerPath]: productsApi.reducer,
+    [filtrationApi.reducerPath]: filtrationApi.reducer,
     categories: categoriesReducer,
+    search: searchReducer,
+    products: productsRouter,
+    filter: filterRouter,
   },
 
   middleware: (getDefaultMiddleware) =>
@@ -24,7 +34,9 @@ export const store = configureStore({
       categoriesApi.middleware,
       tokenApi.middleware,
       bannersApi.middleware,
-      brandsApi.middleware
+      brandsApi.middleware,
+      productsApi.middleware,
+      filtrationApi.middleware
     ),
 });
 

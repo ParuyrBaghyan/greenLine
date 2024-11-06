@@ -7,9 +7,12 @@ import { useCallback, useRef, useState } from "react";
 import { useLazyGetSearchResultQuery } from "@/services/search/search";
 import debounce from "lodash.debounce";
 import CircularProgress from "@mui/material/CircularProgress/CircularProgress";
+import { useDispatch } from "react-redux";
+import { showSearchDD } from "@/store/search/search";
 
 export default function SearchInput() {
   const t = useTranslations();
+  const dispatch = useDispatch();
 
   const [searchTerm, setSearchTerm] = useState("");
   const [triggerSearch, { data, isFetching }] = useLazyGetSearchResultQuery();
@@ -38,8 +41,12 @@ export default function SearchInput() {
     requestRef.current.abort();
   };
 
+  function showCtgDDHandler() {
+    dispatch(showSearchDD());
+  }
+
   return (
-    <div className={style.search_input_container}>
+    <div className={style.search_input_container} onClick={showCtgDDHandler}>
       <GoSearch />
       <input
         type="text"

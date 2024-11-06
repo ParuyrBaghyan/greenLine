@@ -1,0 +1,15 @@
+@import "/src/styles/mixin.scss";
+@import "/src/styles/variables.scss";
+
+
+.categories_container {
+    @include filter_type_container;
+
+    &>p {
+        @include filter_type_title;
+    }
+
+    &>div {
+        @include filter_type_each_item;
+    }
+}

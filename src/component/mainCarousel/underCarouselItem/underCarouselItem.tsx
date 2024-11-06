@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import style from './underCarouselItem.module.scss'
-import myImageLoader from '@/utils/imageLoader';
+import myImageLoader from '@/helperFunctions/imageLoader';
 
 interface BannerImageProps {
     src: string;

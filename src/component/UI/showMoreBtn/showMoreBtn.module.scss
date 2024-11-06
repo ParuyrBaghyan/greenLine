@@ -1,0 +1,13 @@
+@import "/src/styles/mixin.scss";
+@import "/src/styles/variables.scss";
+
+
+.show_more_btn {
+    cursor: pointer;
+
+    &:hover {
+        @include hoverForFIlterItem;
+        font-weight: bold;
+        
+    }
+}

@@ -1,0 +1,10 @@
+@import "/src/styles/mixin.scss";
+@import "/src/styles/variables.scss";
+
+.categories_container {
+  @include cat_brand_products_page;
+
+  .categories_filters_and_items {
+    @include products_filters_and_items;
+  }
+}

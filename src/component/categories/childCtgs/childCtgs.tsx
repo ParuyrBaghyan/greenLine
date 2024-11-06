@@ -1,9 +1,10 @@
 import { useGetAllChildrenQuery } from "@/services/categories/categories";
 import style from "./childCtgs.module.scss";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { showHideCtgDD } from "@/store/categories/categoriesSlice";
+import ChildCtgsLoader from "./childCtgsLoader/childCtgsLoader";
+import { ProductSortEnum } from "@/types/enums";
+import { useUpdateUrl } from "@/hooks/useUpdateUrl";
 
 interface ChildCtgsProps {
   parentId: number;
@@ -18,27 +19,34 @@ interface ChildCtg {
 
 export default function ChildCtgs({ parentId }: ChildCtgsProps) {
   const { data, isError, isLoading } = useGetAllChildrenQuery({ parentId });
-  const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(
-    null
-  );
-
   const dispatch = useDispatch();
-
-  const router = useRouter();
+  const { updateUrl } = useUpdateUrl();
 
   function showCategoryProductsHandler(categoryId: number) {
-    setSelectedCategoryId((prevId) =>
-      prevId === categoryId ? null : categoryId
-    );
-    // router.push(`/products/${categoryId}`);
     dispatch(showHideCtgDD());
+
+
+    updateUrl({
+      id: categoryId,
+      sortBy: ProductSortEnum.PriceHighToLow,
+      section: "categories",
+      page: 1,
+      priceTo: 0,
+      priceFrom: 0
+    });
+  }
+
+  if (isLoading) {
+    return <ChildCtgsLoader />;
   }
 
   return (
     <div className={style.child_ctgs_container}>
       {data?.data?.children?.map((ctgChild: ChildCtg) => (
         <div key={ctgChild.id} className={style.child}>
-          <p>{ctgChild.name}</p>
+          <p onClick={() => showCategoryProductsHandler(ctgChild.id)}>
+            {ctgChild.name}
+          </p>
           <div className={style.subsection_children}>
             {ctgChild.children.map((child) => (
               <span

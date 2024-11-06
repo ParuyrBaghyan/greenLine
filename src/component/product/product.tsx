@@ -1,20 +1,29 @@
 "use client";
+import ProductModel from "@/services/interface/product/productModel";
 import AddToCartBtn from "./addToCartBtn/addToCartBtn";
 import style from "./product.module.scss";
 import ProductImage from "./productImage/productImage";
+import formatPrice from "@/helperFunctions/formatPrice";
+import DiscountBedge from "../UI/discountBedge/discountBedge";
 
-export default function Product() {
+interface ProductProps {
+  product: ProductModel;
+}
+
+export default function Product({ product }: ProductProps) {
+
   return (
     <div className={style.product_container}>
-      <ProductImage />
+      {product?.discountPercent !== 0 && <DiscountBedge percent={product?.discountPercent} />}
+      <ProductImage src={product.photo} alt={product.name} />
       <div>
         <span>
           {" "}
-          <p>Շոկոլադե և ընկույզի կրեմներ</p>
-          <p>Շոկոլադե կրեմ «Նասա» 750գր</p>
+          <p>{product.categoryName}</p>
+          <p dangerouslySetInnerHTML={{ __html: product.name }}></p>
         </span>
         <span>
-          <p>2160D</p>
+          <p>{formatPrice(product.price)}D</p>
           <AddToCartBtn />
         </span>
       </div>

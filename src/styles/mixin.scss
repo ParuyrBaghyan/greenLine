@@ -1,0 +1,58 @@
+@import './variables.scss';
+
+@mixin baseLoaderStyle {
+    background: linear-gradient(
+        90deg,
+        #f0f0f0 25%,
+        #e0e0e0 50%,
+        #f0f0f0 75%
+      );
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite ease-in-out;
+}
+
+@mixin baseLoaderAnimation {
+    @keyframes shimmer {
+        0% {
+          background-position: 200% 0;
+        }
+        100% {
+          background-position: -200% 0;
+        }
+      }
+}
+
+@mixin hoverForFIlterItem {
+  color: $mainGreenColor;
+}
+
+@mixin filter_type_container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@mixin filter_type_title{
+  font-size: 19px;
+  letter-spacing: .7px;
+}
+
+
+@mixin filter_type_each_item{
+  display: flex;
+  flex-direction: column;
+  gap: .8rem;
+}
+
+@mixin cat_brand_products_page{
+  width: 100%;
+  margin: 4vh 0vh;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+@mixin products_filters_and_items{
+  display: flex;
+  justify-content: space-between;
+}

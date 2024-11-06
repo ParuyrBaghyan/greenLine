@@ -32,13 +32,40 @@ export const categoriesApi = createApi({
         return {
           url: `/Category/GetAllChildren`,
           method: "POST",
-          body:  parentId ,
+          body: parentId,
         };
       },
       providesTags: ["categoriesApi"],
     }),
+
+    getCategoryNames: builder.query({
+      query: (parentId) => {
+        return {
+          url: `/Category/GetCategory`,
+          method: "POST",
+          body: parentId,
+        };
+      },
+      providesTags: ["categoriesApi"],
+    }),
+
+    getByCategory: builder.query({
+      query: (body) => {
+        return {
+          url: `/Product/GetByLastCategory`,
+          method: "POST",
+          body: body,
+        };
+      },
+      providesTags: ["categoriesApi"],
+      keepUnusedDataFor : 300,
+    }),
   }),
 });
 
-export const { useGetParentCategoriesQuery, useGetAllChildrenQuery } =
-  categoriesApi;
+export const {
+  useGetParentCategoriesQuery,
+  useGetAllChildrenQuery,
+  useGetCategoryNamesQuery,
+  useLazyGetByCategoryQuery
+} = categoriesApi;

@@ -1,0 +1,88 @@
+@import "/src/styles/mixin.scss";
+@import "/src/styles/variables.scss";
+
+.footer_top_container {
+  margin: 3vh 0vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+
+  .footer_logo {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    & > span {
+      width: 80%;
+      font-size: 14px;
+      color: #52545b;
+      line-height: 18px;
+    }
+  }
+
+  .list {
+    display: flex;
+    justify-content: center;
+
+    & > span {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      & > p {
+        font-weight: 700;
+      }
+      & > ul {
+        list-style-type: none;
+        & > li {
+          margin-bottom: 10px;
+
+          & > a {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            line-height: 24px;
+            margin-bottom: 12px;
+            text-decoration: none;
+            color: black;
+            
+            &:hover {
+              @include hoverForFIlterItem;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .contacts {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1rem;
+
+    & > span {
+      display: flex;
+      gap: 0.5rem;
+
+      & > a {
+        & > svg {
+          font-size: 26px;
+          cursor: pointer;
+        }
+
+        &:nth-child(1) {
+            color: rgb(35, 87, 255);
+          }
+          &:nth-child(2) {
+            color: red;
+          }
+      }
+    }
+
+    & > p {
+      text-align: end;
+      width: 70%;
+      color: #52545b;
+      font-size: 16px;
+    }
+  }
+}

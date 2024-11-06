@@ -1,0 +1,31 @@
+@import "/src/styles/mixin.scss";
+@import "/src/styles/variables.scss";
+
+
+.price_container {
+  @include filter_type_container;
+
+  & > p {
+        @include filter_type_title;
+  }
+
+  .inputes {
+    display: flex;
+    gap: 0.5rem;
+
+    & > input {
+      width: 40%;
+      border: 1px solid #cfcfcf;
+      padding: 15px 14px;
+      font-size: 16px;
+      border-radius: 30px;
+      color: rgba(0, 0, 0, 0.568);
+      outline: none;
+    }
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+}

@@ -1,14 +1,22 @@
 "use client";
-import myImageLoader from "@/utils/imageLoader";
+import myImageLoader from "@/helperFunctions/imageLoader";
 import Image from "next/image";
-import style from './productImage.module.scss'
+import style from "./productImage.module.scss";
+import DiscountBedge from "@/component/UI/discountBedge/discountBedge";
 
-export default function ProductImage() {
+interface ProductImageProps {
+  src: string;
+  alt: string;
+  percent?: number
+}
+
+export default function ProductImage({ src, alt, percent }: ProductImageProps) {
   return (
     <div className={style.product_image_box}>
+
       <Image
-        src="https://media.yerevan-city.am/api/Image/Resize/ProductPhoto/1048419.png"
-        alt="product"
+        src={src}
+        alt={alt}
         width={230}
         height={244}
         loader={myImageLoader}

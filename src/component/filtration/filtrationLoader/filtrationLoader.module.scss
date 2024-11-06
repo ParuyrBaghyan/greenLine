@@ -1,0 +1,77 @@
+@import "/src/styles/mixin.scss";
+@import "/src/styles/variables.scss";
+
+.filtration_loader_container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 18%;
+
+    .each_filter_section_loader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        &>span:nth-child(1) {
+            width: 90%;
+            height: 25px;
+            border-radius: 10px;
+            @include baseLoaderStyle;
+        }
+
+        &>span:nth-child(2) {
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+
+            &>span {
+                display: flex;
+                gap: .5rem;
+
+                &>p:nth-child(1) {
+                    padding: 10px 0px 10px 5px;
+                    width: 8%;
+                    height: 15px;
+                    @include baseLoaderStyle;
+                }
+
+                &>p:nth-child(2) {
+                    padding: 10px 0px 10px 5px;
+                    width: 70%;
+                    height: 15px;
+                    border-radius: 10px;
+                    @include baseLoaderStyle;
+                }
+            }
+        }
+    }
+
+    .price_filter_loader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        &>span:nth-child(1) {
+            width: 40%;
+            height: 25px;
+            border-radius: 10px;
+            @include baseLoaderStyle;
+        }
+
+        &>span:nth-child(2) {
+            display: flex;
+            gap: .5rem;
+
+            &>div {
+                width: 40%;
+                height: 40px;
+                border-radius: 30px;
+                @include baseLoaderStyle;
+            }
+        }
+    }
+
+}
+
+
+@include baseLoaderAnimation

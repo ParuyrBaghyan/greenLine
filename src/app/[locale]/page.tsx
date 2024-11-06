@@ -3,7 +3,7 @@ import BodyLayout from "@/layouts/bodyLayout/bodyLayout";
 import MainCarousel from "@/component/mainCarousel/mainCarousel";
 import BrandsCarousel from "@/component/brandsCarousel/brandsCarousel";
 import MobileApp from "@/component/mobileApp/mobileApp";
-import Product from "@/component/product/product";
+import SpecialItems from "@/component/specialItems/specialItems";
 
 export default function HomePage() {
   const t = useTranslations();
@@ -13,7 +13,7 @@ export default function HomePage() {
       <MainCarousel />
       <BrandsCarousel title={t("trendingBrands")} />
       <MobileApp />
-      <Product />
+      <SpecialItems />
     </BodyLayout>
   );
 }

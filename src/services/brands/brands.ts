@@ -21,8 +21,18 @@ export const brandsApi = createApi({
     getTrendingBrands: builder.query({
       query: () => `/Brand/GetTrendingBrand`,
       providesTags: ["brandsApi"],
+      keepUnusedDataFor: 300, 
+    }),
+
+    getByBrand: builder.mutation({
+      query: (body) => ({
+        url: `/Product/GetByBrand`,
+        method: "POST",
+        body: body,
+      }),
+      invalidatesTags: ["brandsApi"],
     }),
   }),
 });
 
-export const { useGetTrendingBrandsQuery } = brandsApi;
+export const { useGetTrendingBrandsQuery, useGetByBrandMutation } = brandsApi;

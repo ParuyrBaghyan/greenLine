@@ -4,6 +4,7 @@ import HeaderTopLine from "../header/headerTopLine/headerTopLine";
 import HeaderLeftSide from "./headerLeftSide/headerLeftSide";
 import HeaderRightSide from "./headerRightSide/headerRightSide";
 import Categories from "../categories/categories";
+import SearchDropDown from "../searchDropDown/searchDropDown";
 
 export default function Header() {
   return (
@@ -16,6 +17,7 @@ export default function Header() {
         <HeaderRightSide />
       </div>
       <Categories />
+      <SearchDropDown />
     </HeadFootLayout>
   );
 }

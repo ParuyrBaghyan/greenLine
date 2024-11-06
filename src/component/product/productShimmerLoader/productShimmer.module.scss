@@ -1,0 +1,91 @@
+@import "/src/styles/variables.scss";
+@import "/src/styles/mixin.scss";
+
+.product_container {
+  color: #171717 !important;
+  display: flex;
+  padding: 0;
+  position: relative;
+  background: #fff;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  height: 428px;
+  border: 1px solid rgba(0, 56, 10, 0.3019607843);
+  border-radius: 11px;
+  width: 270px;
+  min-width: 220px;
+  max-width: 270px;
+  margin-right: 48px;
+  cursor: pointer;
+
+  .image_loader {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include baseLoaderStyle;
+  }
+
+  & > div:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 50%;
+    width: 100%;
+    justify-content: space-between;
+
+    & > span:nth-child(1) {
+      width: 93%;
+      margin: 7px 0px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+
+      &:nth-child(1) > p:nth-child(1) {
+        width: 60%;
+        height: 20px;
+        border-radius: 5px;
+        @include baseLoaderStyle;
+      }
+
+      &:nth-child(1) > p:nth-child(2) {
+        width: 80%;
+        height: 40px;
+        border-radius: 5px;
+        @include baseLoaderStyle;
+      }
+    }
+
+    .bottom {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 7px 0px;
+
+      & > p {
+        width: 50%;
+        height: 20px;
+        border-radius: 5px;
+        @include baseLoaderStyle;
+      }
+
+      & > div {
+        width: 95%;
+        border-radius: 5px;
+        border: none;
+        background-color: $mainGreenColor;
+        color: white;
+        height: 36px;
+        font-size: 16px;
+        @include baseLoaderStyle;
+      }
+    }
+  }
+}
+
+@include baseLoaderAnimation;
