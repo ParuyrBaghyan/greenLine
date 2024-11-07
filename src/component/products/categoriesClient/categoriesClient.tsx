@@ -10,6 +10,7 @@ import { useTranslations } from "use-intl";
 import { useGetCategoryNamesQuery, useLazyGetByCategoryQuery, } from "@/services/categories/categories";
 import { useInView } from "react-intersection-observer";
 import Product from "@/services/interface/product/productModel";
+import { pageCount } from "@/types/enums";
 
 export default function CategoriesClient() {
   const router = useRouter();
@@ -28,9 +29,9 @@ export default function CategoriesClient() {
 
   const { data: categoryNamesData, isError: categoryNamesError, } = useGetCategoryNamesQuery({ parentId: firstQueryParam, });
 
-  const [getByCategory, { isError: categoryProductsError, isLoading: categoryProductsLoading, },] = useLazyGetByCategoryQuery();
+  const [getByCategory, {data:getByCategoryData , isError: categoryProductsError, isLoading: categoryProductsLoading, },] = useLazyGetByCategoryQuery();
 
-  async function fetchData(isEmpty?: boolean) {
+  async function fetchData({ clear }: { clear: boolean }) {
     const brandQueryItems = params.get('brandIds') ? params.get('brandIds')!.split(",").map(Number) : [];
     const countryQueryItems = params.get('countryIds') ? params.get('countryIds')!.split(",").map(Number) : [];
     const isDiscounted = params.get('isDiscounted') ? params.get('isDiscounted') : 'false'
@@ -51,16 +52,15 @@ export default function CategoriesClient() {
       sortBy: JSON.parse(sortBy!),
     });
 
-    console.log(result.data.data.list, "result");
-
-    if (isEmpty) {
-      setProductsArray([])
+    if (clear === true) { 
+      setProductsArray([]) 
+      setProductsArray(result.data.data.list);
+    } else {
+      const concatedData = [...categoryProductsData, ...result.data.data.list]
+      const uniqueArray:any = Array.from(new Map(concatedData.map((item: Product) => [item.id, item])).values());
+      setProductsArray(uniqueArray);
     }
-    setProductsArray((prevProducts) => [...prevProducts, ...result.data.data.list]);
-
   }
-
-  const prevParamsRef = useRef<string | null>(null);
 
   useEffect(() => {
     params.set('priceFrom', params.get('priceFrom') ? params.get('priceFrom') : filtrationData?.data?.priceFrom)
@@ -69,32 +69,22 @@ export default function CategoriesClient() {
   }, [filtrationData]);
 
   useEffect(() => {
-    const prevParamsString = prevParamsRef.current;
-
-    prevParamsRef.current = params.toString();
-
-    const currentParams = Object.fromEntries(params.entries());
-    const prevParams = prevParamsString ? Object.fromEntries(new URLSearchParams(prevParamsString)) : {};
-
-    const hasOtherParamsChanged = Object.keys(currentParams).some((key) =>
-      key !== 'page' && currentParams[key] !== prevParams[key]
-    );
-
-    if (hasOtherParamsChanged || !prevParamsString) {
-      fetchData(true);
+    if(inView !==true){
+      fetchData({ clear: true });
     }
-    
   }, [searchParams]);
 
 
-  useEffect(() => {
-    if (inView && categoryProductsData) {
-      params.set('page', `${JSON.parse(`${params.get('page')}`) + 1}`)
-      router.replace(`${pathname}?${params.toString()}`, { scroll: false });
-    }
-  }, [inView])
+  if((categoryProductsData.length - getByCategoryData?.itemCount > 0 )||  getByCategoryData?.itemCount > 20 ){
 
-  console.log(categoryProductsData);
+    useEffect(() => {
+      if (inView === true && categoryProductsData) {
+        params.set('page', `${JSON.parse(`${params.get('page')}`) + pageCount.add}`)
+        router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+      }
+      fetchData({ clear: false });
+    }, [inView])
+  }
 
   return (
     <BodyLayout>

@@ -37,6 +37,8 @@ export default function BrandsFilter({ brands }: BrandsProps) {
 
     if (brandIdsArray.length) {
       params.set("brandIds", brandIdsArray.join(","));
+      params.set("page", "1");
+
     } else {
       params.delete("brandIds");
     }

@@ -6,3 +6,8 @@ export enum ProductSortEnum {
     // PopularFirst = 5,
     // NewInFirst = 6,
   };
+
+
+  export enum pageCount {
+    add = 1
+  }

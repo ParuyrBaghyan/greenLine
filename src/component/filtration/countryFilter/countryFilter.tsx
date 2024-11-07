@@ -37,6 +37,7 @@ export default function CountryFilter({ countries }: CountriesFilterProps) {
 
     if (countriesIdsArray.length) {
       params.set("countryIds", countriesIdsArray.join(","));
+      params.set("page", "1");
     } else {
       params.delete("countryIds");
     }

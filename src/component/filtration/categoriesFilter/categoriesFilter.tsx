@@ -37,6 +37,7 @@ export default function CategoriesFilter({ categories }: CategoriesProps) {
 
     if (categoriesIdsArray.length) {
       params.set("categoryIds", categoriesIdsArray.join(","));
+      params.set("page", "1");
     } else {
       params.delete("categoryIds");
     }
