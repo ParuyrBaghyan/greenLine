@@ -46,7 +46,7 @@
     "manufacturer": "Manufacturer"
   },
   "prodsWithDis": "Products with discount",
-
+  "clear":"Clear",
   "sortBy": {
     "az": "Alphabetical A - Z",
     "lh": "Price: Low to high",

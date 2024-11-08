@@ -1,13 +1,17 @@
 
 interface PriceInputProps {
-    priceFrom?: number;
-    priceTo?: number;
+    type:string;
+    value?: any;
     onchange: (e: React.ChangeEvent<HTMLInputElement>, identifier: string) => void
 }
 
-export default function PriceInput({ priceFrom, priceTo, onchange }: PriceInputProps) {
+export default function PriceInput({ value, onchange, type }: PriceInputProps) {
+    const {price} = value
+    console.log(price)
+
+
     return <input
         type="number"
-        defaultValue={priceFrom ? priceFrom : priceTo}
-        onChange={(e) => onchange(e, priceFrom ? 'from' : "to")} />
+        defaultValue={price}
+        onChange={(e) => onchange(e, type)} />
 }

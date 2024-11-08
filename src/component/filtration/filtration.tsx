@@ -1,7 +1,4 @@
-import allProductsFilter, {
-  EachItemBaseModel,
-  FilterParentCategoryModel,
-} from "@/services/interface/filtration/allProudctsFilter";
+import allProductsFilter, { EachItemBaseModel, FilterParentCategoryModel } from "@/services/interface/filtration/allProudctsFilter";
 import CategoriesFilter from "./categoriesFilter/categoriesFilter";
 import style from "./filtration.module.scss";
 import { useTranslations } from "use-intl";
@@ -11,24 +8,28 @@ import CountryFilter from "./countryFilter/countryFilter";
 import BrandsFilter from "./brandsFilter/brandsFilter";
 import SubCategoriesFilter from "./subCategoriesFilter/subCategoriesFilter";
 import FiltrationLoader from "./filtrationLoader/filtrationLoader";
+import ClearFiltrationButton from "./clearButton/clearButton";
 
 interface AllProductsFilterProps {
   filtrationTypes: allProductsFilter;
   subCategories?: EachItemBaseModel[];
   parentCategory?: FilterParentCategoryModel;
-  isLoading:boolean
+  isLoading: boolean
 }
 
-export default function Filtration({ filtrationTypes, subCategories, parentCategory, isLoading}: AllProductsFilterProps) {
+export default function Filtration({ filtrationTypes, subCategories, parentCategory, isLoading }: AllProductsFilterProps) {
   const t = useTranslations();
 
-  if(isLoading){
+  if (isLoading) {
     return <FiltrationLoader />
   }
 
   return (
     <div className={style.filtration_container}>
-      <h2>{t("filter")}</h2>
+      <span>
+        <h2>{t("filter")}</h2>
+        <ClearFiltrationButton />
+      </span>
       {subCategories ? (
         <SubCategoriesFilter
           subCategories={subCategories}

@@ -24,15 +24,15 @@ export const brandsApi = createApi({
       keepUnusedDataFor: 300, 
     }),
 
-    getByBrand: builder.mutation({
+    getByBrand: builder.query({
       query: (body) => ({
         url: `/Product/GetByBrand`,
         method: "POST",
         body: body,
       }),
-      invalidatesTags: ["brandsApi"],
+      providesTags: ["brandsApi"],
     }),
   }),
 });
 
-export const { useGetTrendingBrandsQuery, useGetByBrandMutation } = brandsApi;
+export const { useGetTrendingBrandsQuery, useLazyGetByBrandQuery } = brandsApi;

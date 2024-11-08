@@ -5,6 +5,7 @@ import { EachItemBaseModel } from "@/services/interface/filtration/allProudctsFi
 import { useShowMoreItems } from "@/hooks/useShowMoreItems";
 import ShowMoreBtn from "@/component/UI/showMoreBtn/showMoreBtn";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
 interface CategoriesProps {
   categories: EachItemBaseModel[];
@@ -16,8 +17,12 @@ export default function CategoriesFilter({ categories }: CategoriesProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const { count, showMoreItems } = useShowMoreItems(10, 10);
 
-  const { count, showMoreItems } = useShowMoreItems(8, 8);
+  // const params = new URLSearchParams(searchParams);
+  // useEffect(() => {
+  //   showMoreItems(10)
+  // }, [params.get('categories')])
 
   function showMoreItemsHandler() {
     showMoreItems(categories.length)
@@ -55,7 +60,7 @@ export default function CategoriesFilter({ categories }: CategoriesProps) {
           return <FilterEachItem key={item.id} item={item} filterName='categoryIds' selectItemHandler={selectItemHandler} />;
         })}
       </div>
-      {categories?.length > 8 && <ShowMoreBtn showMoreItemsHandler={showMoreItemsHandler} />}
+      {count < categories.length && (<ShowMoreBtn showMoreItemsHandler={showMoreItemsHandler} />)}
     </div>
   );
 }

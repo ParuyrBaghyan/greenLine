@@ -23,7 +23,7 @@ export default function Product({ product }: ProductProps) {
           <p dangerouslySetInnerHTML={{ __html: product.name }}></p>
         </span>
         <span>
-          <p>{formatPrice(product.price)}D</p>
+          <p>{formatPrice(product.price)}֏</p>
           <AddToCartBtn />
         </span>
       </div>
