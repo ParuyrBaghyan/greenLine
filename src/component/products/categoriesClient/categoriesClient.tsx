@@ -11,8 +11,11 @@ import { useGetCategoryNamesQuery, useLazyGetByCategoryQuery, } from "@/services
 import { useInView } from "react-intersection-observer";
 import Product from "@/services/interface/product/productModel";
 import { pageCount } from "@/types/enums";
-import { getDiscountQuery, getNecessaryQuery, getSortByQuery } from "@/helperFunctions/queries";
-import { sendPage_int, sendPrice_int, sendSortBy_int } from "@/helperFunctions/requests";
+import { getDiscountQuery, getFirstQueryParam, getNecessaryQuery, replaceURL, setAddPageCountQuery, setPriceQuery } from "@/helperFunctions/queries";
+import { getPage_int, getPrice_int, getSortBy_int } from "@/helperFunctions/requests";
+import { getProductsLoaderState, getUniqueArray } from "@/helperFunctions/helperClientFunctions";
+import ProductsLoader from "@/component/UI/productsLoader/productsLoader";
+
 
 export default function CategoriesClient() {
   const router = useRouter();
@@ -24,8 +27,7 @@ export default function CategoriesClient() {
 
   const params = new URLSearchParams(searchParams);
 
-  const firstQueryParamName = searchParams.keys().next().value;
-  const firstQueryParam = firstQueryParamName && searchParams.get(firstQueryParamName);
+  const firstQueryParam = getFirstQueryParam(searchParams)
 
   const { data: filtrationData, isLoading: filtratioLoading } = useGetAllProductsFilterQuery({ categoryId: firstQueryParam });
 
@@ -35,6 +37,7 @@ export default function CategoriesClient() {
 
   async function fetchData({ clear }: { clear: boolean }) {
     const brandQueryItems = getNecessaryQuery(params, 'brandIds');
+    debugger
     const countryQueryItems = getNecessaryQuery(params, 'countryIds');
     const isDiscounted = getDiscountQuery(params)
 
@@ -45,30 +48,26 @@ export default function CategoriesClient() {
       count: pageCount.itemsToShow,
       countries: [...countryQueryItems],
       isDiscounted: JSON.parse(isDiscounted!),
-      page: sendPage_int(params),
+      page: getPage_int(params),
       parentId: firstQueryParam,
-      priceFrom: sendPrice_int(filtrationData, params, 'priceFrom'),
-      priceTo: sendPrice_int(filtrationData, params, 'priceTo'),
+      priceFrom: getPrice_int(filtrationData, params, 'priceFrom'),
+      priceTo: getPrice_int(filtrationData, params, 'priceTo'),
       search: null,
-      sortBy: sendSortBy_int(params),
+      sortBy: getSortBy_int(params),
     });
 
     if (clear === true) {
       setProductsArray([])
       setProductsArray(result.data.data.list);
     } else {
-      const concatedData = [...categoryProductsData, ...result.data.data.list]
-      const uniqueArray: any = Array.from(new Map(concatedData.map((item: Product) => [item.id, item])).values());
+      const uniqueArray: Product[] = getUniqueArray(categoryProductsData, result.data.data.list)
       setProductsArray(uniqueArray);
     }
   }
 
-  console.log(firstQueryParam);
-  
-
   useEffect(() => {
-    params.set('priceFrom', params.get('priceFrom') ? params.get('priceFrom') : filtrationData?.data?.priceFrom)
-    params.set('priceTo', params.get('priceTo') ? params.get('priceTo') : filtrationData?.data?.priceTo)
+    setPriceQuery('priceFrom', params, filtrationData)
+    setPriceQuery('priceTo', params, filtrationData)
     router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   }, [filtrationData]);
 
@@ -79,11 +78,9 @@ export default function CategoriesClient() {
   }, [searchParams]);
 
   useEffect(() => {
-    console.log(inView, 'inView');
-
     if (inView === true && categoryProductsData.length >= pageCount.itemsToShow) {
-      params.set('page', `${JSON.parse(`${params.get('page')}`) + pageCount.add}`)
-      router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+      setAddPageCountQuery(params)
+      replaceURL(router, params, pathname)
     }
     fetchData({ clear: false });
   }, [inView])
@@ -99,6 +96,7 @@ export default function CategoriesClient() {
             filtrationTypes={filtrationData?.data}
             subCategories={categoryNamesData?.data.categories}
             parentCategory={categoryNamesData?.data.parentCategory}
+            params={params}
           />
           <Products
             isLoading={categoryProductsLoading}
@@ -107,7 +105,8 @@ export default function CategoriesClient() {
           />
         </div>
       </div>
-      {fetchedCategoryProducts?.data.itemCount > 20 && <p ref={ref}></p>}
+      {getProductsLoaderState(fetchedCategoryProducts ,categoryProductsData) && <ProductsLoader ref={ref} />}
+
     </BodyLayout>
   );
 }

@@ -2,6 +2,8 @@ import { useTranslations } from "next-intl";
 import style from "./priceFilter.module.scss";
 import PriceInput from "@/component/UI/priceInput/priceInput";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { showPrice } from "@/helperFunctions/helperClientFunctions";
+import { changePriceQuery, replaceURL } from "@/helperFunctions/queries";
 
 interface PriceFilterProps {
   priceFrom: number;
@@ -16,25 +18,23 @@ export default function PriceFilter({ priceFrom, priceTo }: PriceFilterProps) {
 
   const params = new URLSearchParams(searchParams);
 
-  function priceRangeHandler(e: React.ChangeEvent<HTMLInputElement>, identifier: string) {
-    if (identifier === 'from') {
-      params.set('priceFrom', `${e.target.value || priceFrom}`)
-      params.set('priceTo', `${params.get('priceTo') || priceTo}`)
+  function priceRangeHandler(value: string, type: string) {
+    if (type === 'from') {
+      changePriceQuery(value, params, priceFrom, priceTo, 'priceFrom', 'priceTo')
     } else {
-      params.set('priceTo', `${e.target.value || priceTo}`)
-      params.set('priceFrom', `${params.get('priceFrom') ? params.get('priceFrom') : priceFrom}`)
+      changePriceQuery(value, params, priceTo, priceFrom, 'priceTo','priceFrom')
     }
-    router.replace(`${pathname}?${params.toString()}`);
+    replaceURL(router, params, pathname)
   }
 
-
+  
 
   return (
     <div className={style.price_container}>
       <p>{t("filtrationTypes.price")}</p>
       <div className={style.inputes}>
-        <PriceInput onchange={priceRangeHandler} type={"from"} value={{ price: priceFrom }} />
-        <PriceInput onchange={priceRangeHandler} type={"to"} value={{ price: priceTo }} />
+        <PriceInput onchange={(value,type) => priceRangeHandler(value,type)} type={"from"} value={{ price: showPrice(params, priceFrom, 'priceFrom') }} />
+        <PriceInput onchange={(value,type) => priceRangeHandler(value,type)} type={"to"} value={{ price: showPrice(params, priceTo, 'priceTo') }} />
       </div>
     </div>
   );

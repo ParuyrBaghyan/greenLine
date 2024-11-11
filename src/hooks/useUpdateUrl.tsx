@@ -5,8 +5,8 @@ interface UpdateUrlProps {
   sortBy: number;
   section: string;
   page: number;
-  priceTo: number;
-  priceFrom: number;
+  priceTo: number | null;
+  priceFrom: number | null;
 }
 
 export function useUpdateUrl() {

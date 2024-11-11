@@ -4,14 +4,19 @@ import clearFiltration from '@/helperFunctions/clearFiltration';
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
 
 
-export default function ClearFiltrationButton() {
+interface ClearFiltrationButtonProps {
+    priceFrom: number,
+    priceTo: number
+}
+
+export default function ClearFiltrationButton({ priceFrom, priceTo }: ClearFiltrationButtonProps) {
     const t = useTranslations();
     const searchParams = useSearchParams();
     const pathname = usePathname();
     const router = useRouter();
 
     function clearFunctionHandler() {
-        clearFiltration(searchParams, pathname, router);
+        clearFiltration(searchParams, pathname, router, priceFrom, priceTo);
     }
 
     return (

@@ -9,17 +9,19 @@ import BrandsFilter from "./brandsFilter/brandsFilter";
 import SubCategoriesFilter from "./subCategoriesFilter/subCategoriesFilter";
 import FiltrationLoader from "./filtrationLoader/filtrationLoader";
 import ClearFiltrationButton from "./clearButton/clearButton";
+import { checkFiltrationExistence } from "@/helperFunctions/helperClientFunctions";
 
 interface AllProductsFilterProps {
   filtrationTypes: allProductsFilter;
   subCategories?: EachItemBaseModel[];
   parentCategory?: FilterParentCategoryModel;
-  isLoading: boolean
+  isLoading: boolean,
+  params: URLSearchParams
 }
 
-export default function Filtration({ filtrationTypes, subCategories, parentCategory, isLoading }: AllProductsFilterProps) {
+export default function Filtration({ filtrationTypes, subCategories, parentCategory, isLoading, params }: AllProductsFilterProps) {
   const t = useTranslations();
-
+  let showButtonBool = checkFiltrationExistence(params , filtrationTypes)
   if (isLoading) {
     return <FiltrationLoader />
   }
@@ -28,7 +30,7 @@ export default function Filtration({ filtrationTypes, subCategories, parentCateg
     <div className={style.filtration_container}>
       <span>
         <h2>{t("filter")}</h2>
-        <ClearFiltrationButton />
+        {showButtonBool  && <ClearFiltrationButton priceFrom={filtrationTypes?.priceFrom} priceTo={filtrationTypes?.priceTo}/>}
       </span>
       {subCategories ? (
         <SubCategoriesFilter

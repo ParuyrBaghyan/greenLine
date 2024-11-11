@@ -1,15 +1,35 @@
+import { useEffect, useState, useCallback } from "react";
 
 interface PriceInputProps {
-    type:string;
+    type: string;
     value?: any;
-    onchange: (e: React.ChangeEvent<HTMLInputElement>, identifier: string) => void
+    onchange: (value: string, identifier: string) => void;
 }
 
 export default function PriceInput({ value, onchange, type }: PriceInputProps) {
-    const {price} = value
+    const { price } = value;
 
-    return <input
-        type="number"
-        defaultValue={price}
-        onChange={(e) => onchange(e, type)} />
+    const [mainValue, setValue] = useState(price);
+
+    const handleChange = useCallback((value: string) => {
+        if (+value !== mainValue) {
+            setValue(+value);
+            onchange(value, type);
+        }
+    }, [mainValue, onchange, type]);
+
+    useEffect(() => {
+        if (price !== mainValue) {
+            setValue(price);
+        }
+    }, [price, mainValue]);
+
+
+    return (
+        <input
+            type="number"
+            value={mainValue}
+            onChange={(e) => handleChange(e.target.value)}
+        />
+    );
 }

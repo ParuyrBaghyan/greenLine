@@ -2,7 +2,6 @@
 import myImageLoader from "@/helperFunctions/imageLoader";
 import Image from "next/image";
 import style from "./productImage.module.scss";
-import DiscountBedge from "@/component/UI/discountBedge/discountBedge";
 
 interface ProductImageProps {
   src: string;

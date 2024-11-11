@@ -1,0 +1,14 @@
+.product_loader_container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 5vh;
+
+    &>div{
+        width: 81%;
+        display: flex;
+        justify-content: center;
+
+
+    }
+}

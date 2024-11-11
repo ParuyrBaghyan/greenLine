@@ -5,13 +5,17 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { ProductSortEnum } from "@/types/enums";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { replaceURL } from "@/helperFunctions/queries";
+import { getSelectedSortTitle } from "@/helperFunctions/helperClientFunctions";
 
 export default function SortBy() {
   const t = useTranslations();
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-
+  
+  const params = new URLSearchParams(searchParams);
+  
   const sortByArray = [
     { type: ProductSortEnum.AlphabeticalAZ, title: t("sortBy.az") },
     { type: ProductSortEnum.PriceLowToHigh, title: t("sortBy.lh") },
@@ -19,6 +23,7 @@ export default function SortBy() {
     { type: ProductSortEnum.AlphabeticalZA, title: t("sortBy.za") },
   ];
 
+  const title = getSelectedSortTitle(params,sortByArray) 
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -32,16 +37,15 @@ export default function SortBy() {
   }
 
 
-  const params = new URLSearchParams(searchParams);
   function selectItemHandler(type: number) {
     params.set("sortBy", type.toString());
-    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+    replaceURL(router,params,pathname)
   }
 
   return (
     <div className={style.sort_by_box}>
       <div className={style.selected_type} onClick={toggleDropdown}>
-        <span>{sortByArray.find((item) => item.type == +params.get("sortBy")!)?.title}</span>
+        <span>{title}</span>
         <IoIosArrowDown />
       </div>
       {isDropdownOpen && (

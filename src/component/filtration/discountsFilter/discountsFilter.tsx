@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl";
 import style from "./discountsFilter.module.scss";
 import FilterEachItem from "../filterEachItem/filterEachItem";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { replaceURL } from "@/helperFunctions/queries";
 
 export default function DiscountsFilter() {
   const t = useTranslations();
@@ -29,9 +30,7 @@ export default function DiscountsFilter() {
     } else {
       params.delete("isDiscounted");
     }
-
-    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
-
+    replaceURL(router,params,pathname)
   }
 
   return (

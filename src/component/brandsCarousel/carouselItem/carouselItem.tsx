@@ -18,8 +18,8 @@ export default function CarouselItem({ brand }: CarouselItemProps) {
       sortBy: ProductSortEnum.PriceHighToLow,
       section: "brands",
       page: 1,
-      priceTo: 0,
-      priceFrom: 0
+      priceTo: null,
+      priceFrom: null
     });
   }
 

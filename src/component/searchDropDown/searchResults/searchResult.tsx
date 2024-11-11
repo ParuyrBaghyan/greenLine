@@ -9,7 +9,7 @@ export default function SearchResult() {
   const searchResult = useSelector(
     (state: RootState) => state.search.searchResult
   );
-  const count = searchResult?.itemCount ? searchResult.itemCount : "";
+  const count = searchResult?.itemCount ? searchResult.itemCount : null;
 
   return (
     <div className={style.search_result_container}>

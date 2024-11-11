@@ -18,9 +18,7 @@ export default function MainCarouselTop() {
 
   return (
     <div className={style.main_carousel_top}>
-      <Carousel
-        banners={data?.data?.banners.slice(2, data.data.banners.length)}
-      />
+      <Carousel banners={data?.data?.banners.slice(2, data.data.banners.length)}/>
 
       {data?.data?.banners.slice(0, 2).map((banner: Banner) => (
         <SingleBanner

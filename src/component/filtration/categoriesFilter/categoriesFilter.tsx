@@ -6,6 +6,7 @@ import { useShowMoreItems } from "@/hooks/useShowMoreItems";
 import ShowMoreBtn from "@/component/UI/showMoreBtn/showMoreBtn";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
+import { replaceURL } from "@/helperFunctions/queries";
 
 interface CategoriesProps {
   categories: EachItemBaseModel[];
@@ -18,11 +19,6 @@ export default function CategoriesFilter({ categories }: CategoriesProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const { count, showMoreItems } = useShowMoreItems(10, 10);
-
-  // const params = new URLSearchParams(searchParams);
-  // useEffect(() => {
-  //   showMoreItems(10)
-  // }, [params.get('categories')])
 
   function showMoreItemsHandler() {
     showMoreItems(categories.length)
@@ -46,9 +42,7 @@ export default function CategoriesFilter({ categories }: CategoriesProps) {
     } else {
       params.delete("categoryIds");
     }
-
-    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
-
+    replaceURL(router,params,pathname)
   }
 
   return (

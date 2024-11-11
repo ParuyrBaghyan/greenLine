@@ -31,8 +31,8 @@ export default function ChildCtgs({ parentId }: ChildCtgsProps) {
       sortBy: ProductSortEnum.PriceHighToLow,
       section: "categories",
       page: 1,
-      priceTo: 0,
-      priceFrom: 0
+      priceTo: null,
+      priceFrom: null
     });
   }
 

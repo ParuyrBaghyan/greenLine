@@ -23,8 +23,8 @@ export default function ParentCtgs({ getParentId }: ParentCtgsProps) {
       sortBy: ProductSortEnum.PriceHighToLow,
       section: "categories",
       page: 1,
-      priceTo: 0,
-      priceFrom: 0
+      priceTo: null,
+      priceFrom: null
     });
   }
 

@@ -1,3 +1,4 @@
+import { ProductSortEnum } from "@/types/enums";
 import Brand from "../brands/brandModel";
 
 export default interface allProductsFilter {
@@ -18,4 +19,10 @@ export interface FilterParentCategoryModel {
   categoryName: string;
   isAdult: boolean;
   parentCategoryId: number | null;
+}
+
+
+export interface SortByArrayModel {
+  type: ProductSortEnum
+  title: string
 }
