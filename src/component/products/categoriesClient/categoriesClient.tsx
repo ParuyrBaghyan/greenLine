@@ -11,7 +11,8 @@ import { useGetCategoryNamesQuery, useLazyGetByCategoryQuery, } from "@/services
 import { useInView } from "react-intersection-observer";
 import Product from "@/services/interface/product/productModel";
 import { pageCount } from "@/types/enums";
-import { getNecessaryQuery } from "@/helperFunctions/queries";
+import { getDiscountQuery, getNecessaryQuery, getSortByQuery } from "@/helperFunctions/queries";
+import { sendPage_int, sendPrice_int, sendSortBy_int } from "@/helperFunctions/requests";
 
 export default function CategoriesClient() {
   const router = useRouter();
@@ -30,13 +31,12 @@ export default function CategoriesClient() {
 
   const { data: categoryNamesData, isError: categoryNamesError, } = useGetCategoryNamesQuery({ parentId: firstQueryParam, });
 
-  const [getByCategory, {data:fetchedCategoryProducts, isError: categoryProductsError, isLoading: categoryProductsLoading, },] = useLazyGetByCategoryQuery();
+  const [getByCategory, { data: fetchedCategoryProducts, isError: categoryProductsError, isLoading: categoryProductsLoading, },] = useLazyGetByCategoryQuery();
 
   async function fetchData({ clear }: { clear: boolean }) {
-    const brandQueryItems = getNecessaryQuery(params , 'brandIds');
-    const countryQueryItems = getNecessaryQuery(params ,'countryIds');
-    const isDiscounted = params.get('isDiscounted') ? params.get('isDiscounted') : 'false'
-    const sortBy = params.get('sortBy');
+    const brandQueryItems = getNecessaryQuery(params, 'brandIds');
+    const countryQueryItems = getNecessaryQuery(params, 'countryIds');
+    const isDiscounted = getDiscountQuery(params)
 
     const result = await getByCategory({
       brands: [...brandQueryItems],
@@ -45,12 +45,12 @@ export default function CategoriesClient() {
       count: pageCount.itemsToShow,
       countries: [...countryQueryItems],
       isDiscounted: JSON.parse(isDiscounted!),
-      page: JSON.parse(`${params.get('page')}`) || pageCount.defPage,
+      page: sendPage_int(params),
       parentId: firstQueryParam,
-      priceFrom: JSON.parse(`${params.get('priceFrom')}`) || filtrationData?.data?.priceFrom,
-      priceTo: JSON.parse(`${params.get('priceTo')}`) || filtrationData?.data?.priceTo,
+      priceFrom: sendPrice_int(filtrationData, params, 'priceFrom'),
+      priceTo: sendPrice_int(filtrationData, params, 'priceTo'),
       search: null,
-      sortBy: JSON.parse(sortBy!),
+      sortBy: sendSortBy_int(params),
     });
 
     if (clear === true) {
@@ -62,6 +62,9 @@ export default function CategoriesClient() {
       setProductsArray(uniqueArray);
     }
   }
+
+  console.log(firstQueryParam);
+  
 
   useEffect(() => {
     params.set('priceFrom', params.get('priceFrom') ? params.get('priceFrom') : filtrationData?.data?.priceFrom)

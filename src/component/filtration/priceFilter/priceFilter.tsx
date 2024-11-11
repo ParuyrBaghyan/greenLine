@@ -27,7 +27,6 @@ export default function PriceFilter({ priceFrom, priceTo }: PriceFilterProps) {
     router.replace(`${pathname}?${params.toString()}`);
   }
 
-  // console.log(JSON.stringify(Object.keys({ priceTo})[0]));
 
 
   return (

@@ -7,8 +7,6 @@ interface PriceInputProps {
 
 export default function PriceInput({ value, onchange, type }: PriceInputProps) {
     const {price} = value
-    console.log(price)
-
 
     return <input
         type="number"
