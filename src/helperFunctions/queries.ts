@@ -4,7 +4,6 @@ import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.share
 import { pageCount } from "@/types/enums";
 
 export function replaceURL(router: AppRouterInstance, params: URLSearchParams, pathname: string) {
-    
     router.replace(`${pathname}?${params.toString()}`, { scroll: false });
 }
 
@@ -22,7 +21,7 @@ export function getDiscountQuery(params: URLSearchParams) {
 }
 
 export function getPriceQuery_int(params: URLSearchParams, type: string) {
-    return JSON.parse(`${params.get(type)}`)
+        return JSON.parse(`${params.get(type)}`)
 }
 
 export function getSortByQuery(params: URLSearchParams) {
@@ -31,12 +30,16 @@ export function getSortByQuery(params: URLSearchParams) {
 
 export function setPriceQuery(type: string, params: URLSearchParams, filtrationData: any) {
     params.set(type, getPrice_str(filtrationData, params, type))
-}
 
+}
 export function changePriceQuery(value: string, params: URLSearchParams, changeValue: number, keepValue: number, changeValueType: string, keepValueType: string) {
-    params.set(changeValueType, `${value === "" ? "0" : !!value ? value : changeValue}`)
-    debugger
-    params.set(keepValueType, `${params.get(keepValueType) !== "null" ? params.get(keepValueType) : keepValue}`)
+    if (params.get(changeValueType) !== '0') {
+        params.set(changeValueType, `${value === "" ? "0" : !!value ? value : changeValue}`)
+        params.set(keepValueType, `${params.get(keepValueType) !== "null" ? params.get(keepValueType) : keepValue}`)
+    } else {
+        params.set(changeValueType, `${value === "" ? "0" : !!value ? value : changeValue}`.slice(1))
+        params.set(keepValueType, `${params.get(keepValueType) !== "null" ? params.get(keepValueType) : keepValue}`)
+    }
 }
 
 

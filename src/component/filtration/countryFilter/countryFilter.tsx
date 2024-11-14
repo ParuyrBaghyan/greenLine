@@ -55,7 +55,7 @@ export default function CountryFilter({ countries }: CountriesFilterProps) {
           return <FilterEachItem key={item.id} item={item} filterName='countryIds' selectItemHandler={selectItemHandler}/>;
         })}
       </div>
-      {count < countries.length && (<ShowMoreBtn showMoreItemsHandler={showMoreItemsHandler} />)}
+      {count < countries?.length && (<ShowMoreBtn showMoreItemsHandler={showMoreItemsHandler} />)}
     </div>
   );
 }

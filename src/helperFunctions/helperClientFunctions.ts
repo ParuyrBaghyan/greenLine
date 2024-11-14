@@ -14,8 +14,8 @@ export function getUniqueArray(categoryProductsData: Product[], result: Product[
 }
 
 export function getProductsLoaderState(response: any, productsLocalData: Product[]) {
-    return response?.data.itemCount > pageCount.itemsToShow &&
-        productsLocalData.length < response?.data.itemCount
+    return response?.data?.itemCount > pageCount.itemsToShow &&
+        productsLocalData.length < response?.data?.itemCount
 }
 
 export function getSelectedSortTitle(params: URLSearchParams, sortByArray: SortByArrayModel[]) {

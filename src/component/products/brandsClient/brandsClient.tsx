@@ -52,9 +52,9 @@ export default function BrandsClient() {
 
     if (clear === true) {
       setProductsArray([])
-      setProductsArray(result.data.data.list);
+      setProductsArray(result?.data?.data?.list);
     } else {
-      const uniqueArray: Product[] = getUniqueArray(brandProductsData, result.data.data.list)
+      const uniqueArray: Product[] = getUniqueArray(brandProductsData, result?.data?.data?.list)
       setProductsArray(uniqueArray);
     }
   }

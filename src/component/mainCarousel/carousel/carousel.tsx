@@ -14,7 +14,7 @@ interface BannersCarouselProps {
 
 function Carousel({ banners }: BannersCarouselProps) {
 
-  
+
   return (
     <div className="slider-container" id="main_container_carousel">
       <Slider {...MainCarouselSettings}>

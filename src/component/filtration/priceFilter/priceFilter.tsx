@@ -27,8 +27,6 @@ export default function PriceFilter({ priceFrom, priceTo }: PriceFilterProps) {
     replaceURL(router, params, pathname)
   }
 
-  
-
   return (
     <div className={style.price_container}>
       <p>{t("filtrationTypes.price")}</p>

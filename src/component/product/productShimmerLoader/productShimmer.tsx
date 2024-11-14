@@ -1,5 +1,4 @@
 "use client";
-import CircularProgress from "@mui/material/CircularProgress/CircularProgress";
 import style from "./productShimmer.module.scss";
 
 export default function ProductShimmer() {
@@ -7,12 +6,6 @@ export default function ProductShimmer() {
     <div className={style.product_container}>
       <div className={style.image_loader}>
         {" "}
-        {/* <CircularProgress
-          size="50px"
-          sx={{
-            color: "green",
-          }}
-        /> */}
       </div>
       <div>
         <span>

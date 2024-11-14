@@ -10,7 +10,7 @@ import { useTranslations } from "use-intl";
 import { useGetCategoryNamesQuery, useLazyGetByCategoryQuery, } from "@/services/categories/categories";
 import { useInView } from "react-intersection-observer";
 import Product from "@/services/interface/product/productModel";
-import { pageCount } from "@/types/enums";
+import { pageCount, ProductSortEnum } from "@/types/enums";
 import { getDiscountQuery, getFirstQueryParam, getNecessaryQuery, replaceURL, setAddPageCountQuery, setPriceQuery } from "@/helperFunctions/queries";
 import { getPage_int, getPrice_int, getSortBy_int } from "@/helperFunctions/requests";
 import { getProductsLoaderState, getUniqueArray } from "@/helperFunctions/helperClientFunctions";
@@ -18,15 +18,17 @@ import ProductsLoader from "@/component/UI/productsLoader/productsLoader";
 
 
 export default function CategoriesClient() {
+
+
   const router = useRouter();
   const t = useTranslations();
   const pathname = usePathname();
   const { ref, inView } = useInView();
   const searchParams = useSearchParams();
   const [categoryProductsData, setProductsArray] = useState<Product[]>([])
-
+  
   const params = new URLSearchParams(searchParams);
-
+  
   const firstQueryParam = getFirstQueryParam(searchParams)
 
   const { data: filtrationData, isLoading: filtratioLoading } = useGetAllProductsFilterQuery({ categoryId: firstQueryParam });
@@ -37,7 +39,6 @@ export default function CategoriesClient() {
 
   async function fetchData({ clear }: { clear: boolean }) {
     const brandQueryItems = getNecessaryQuery(params, 'brandIds');
-    debugger
     const countryQueryItems = getNecessaryQuery(params, 'countryIds');
     const isDiscounted = getDiscountQuery(params)
 
@@ -58,9 +59,9 @@ export default function CategoriesClient() {
 
     if (clear === true) {
       setProductsArray([])
-      setProductsArray(result.data.data.list);
+      setProductsArray(result?.data?.data?.list);
     } else {
-      const uniqueArray: Product[] = getUniqueArray(categoryProductsData, result.data.data.list)
+      const uniqueArray: Product[] = getUniqueArray(categoryProductsData, result?.data?.data?.list)
       setProductsArray(uniqueArray);
     }
   }
@@ -69,6 +70,7 @@ export default function CategoriesClient() {
     setPriceQuery('priceFrom', params, filtrationData)
     setPriceQuery('priceTo', params, filtrationData)
     router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+
   }, [filtrationData]);
 
   useEffect(() => {
@@ -105,8 +107,26 @@ export default function CategoriesClient() {
           />
         </div>
       </div>
-      {getProductsLoaderState(fetchedCategoryProducts ,categoryProductsData) && <ProductsLoader ref={ref} />}
+      {getProductsLoaderState(fetchedCategoryProducts, categoryProductsData) && <ProductsLoader ref={ref} />}
 
     </BodyLayout>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

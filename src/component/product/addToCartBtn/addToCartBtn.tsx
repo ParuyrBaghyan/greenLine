@@ -2,8 +2,16 @@ import { useTranslations } from 'use-intl'
 import style from './addToCartBtn.module.scss'
 
 
-export default function AddToCartBtn(){
+interface AddToCartBtnProps {
+    onclick: (event: React.MouseEvent) => void
+}
+
+export default function AddToCartBtn({ onclick }: AddToCartBtnProps) {
     const t = useTranslations()
 
-    return <button className={style.add_to_cart_btn}>{t('product.addToCart')}</button>
+    function zx(event:React.MouseEvent){
+        event.stopPropagation()
+    }
+
+    return <button onClick={onclick} className={style.add_to_cart_btn}>{t('product.addToCart')}</button>
 }

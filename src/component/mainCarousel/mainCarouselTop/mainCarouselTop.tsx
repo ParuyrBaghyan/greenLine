@@ -9,16 +9,15 @@ import CarouselShimmerLoader from "../carousel/shimmerLoader/carouselShimmerLoad
 export default function MainCarouselTop() {
   const { data, isError, isLoading } = useGetBannersQuery({ type: 2 });
 
-  if (isLoading)
-    return (
-      <div className={style.main_carousel_top}>
-        <CarouselShimmerLoader />
-      </div>
-    );
+  if (isLoading) {
+  return (
+    <div className={style.main_carousel_loader}></div>
+  );
+  }
 
   return (
     <div className={style.main_carousel_top}>
-      <Carousel banners={data?.data?.banners.slice(2, data.data.banners.length)}/>
+      <Carousel banners={data?.data?.banners.slice(2, data.data.banners.length)} />
 
       {data?.data?.banners.slice(0, 2).map((banner: Banner) => (
         <SingleBanner

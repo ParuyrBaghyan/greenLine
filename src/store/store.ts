@@ -12,6 +12,7 @@ import { bannersApi } from "@/services/banners/banners";
 import { brandsApi } from "@/services/brands/brands";
 import { productsApi } from "@/services/products/products";
 import { filtrationApi } from "@/services/filtration/filtration";
+import { productDetailsApi } from "@/services/product/product-details";
 
 export const store = configureStore({
   reducer: {
@@ -22,6 +23,7 @@ export const store = configureStore({
     [bannersApi.reducerPath]: bannersApi.reducer,
     [productsApi.reducerPath]: productsApi.reducer,
     [filtrationApi.reducerPath]: filtrationApi.reducer,
+    [productDetailsApi.reducerPath]: productDetailsApi.reducer,
     categories: categoriesReducer,
     search: searchReducer,
     products: productsRouter,
@@ -36,7 +38,8 @@ export const store = configureStore({
       bannersApi.middleware,
       brandsApi.middleware,
       productsApi.middleware,
-      filtrationApi.middleware
+      filtrationApi.middleware,
+      productDetailsApi.middleware
     ),
 });
 

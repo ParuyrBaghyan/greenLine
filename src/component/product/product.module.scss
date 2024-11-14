@@ -18,7 +18,7 @@
   margin-right: 48px;
   cursor: pointer;
 
-  & > div {
+  &>div {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,7 +26,7 @@
     width: 100%;
     justify-content: space-between;
 
-    & > span {
+    &>span {
       width: 93%;
       margin: 7px 0px;
       display: flex;
@@ -34,13 +34,13 @@
       align-items: center;
       gap: 0.5rem;
 
-      &:nth-child(1) > p:nth-child(1) {
+      &:nth-child(1)>p:nth-child(1) {
         color: $mainGreenColor;
         font-size: 14px;
         text-align: center;
       }
 
-      &:nth-child(1) > p:nth-child(2) {
+      &:nth-child(1)>p:nth-child(2) {
         font-size: 19px;
         text-align: center;
         display: -webkit-box;
@@ -52,9 +52,27 @@
       }
     }
 
-    & > span:nth-child(2) > p {
-      font-size: 20px;
-      font-weight: bold;
+    &>span:nth-child(2) {
+
+      &>span {
+        display: flex;
+        align-items: flex-end;
+        gap: .3rem;
+
+        &>p {
+          color: $darkShadeOfRed;
+          font-size: 20px;
+        }
+
+        &>del {
+          color: $charcoalGray;
+        }
+      }
+
+      &>p {
+        font-size: 20px;
+        font-weight: bold;
+      }
     }
   }
 }
