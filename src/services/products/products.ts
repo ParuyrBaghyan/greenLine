@@ -6,12 +6,12 @@ export const productsApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://web-backend.innodream.com/api/",
     prepareHeaders: (headers) => {
-      Headers(
+     Headers({
         headers,
-        "application/json",
-        "https://greenline.yerevan-city.am",
-        "3"
-      );
+       accept: "application/json",
+       origin: "https://greenline.yerevan-city.am",
+       ostype: "3"
+     } );
       return headers;
     },
   }),

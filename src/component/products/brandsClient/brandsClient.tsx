@@ -15,6 +15,7 @@ import { getPage_int, getPrice_int, getSortBy_int } from "@/helperFunctions/requ
 import { getDiscountQuery, getFirstQueryParam, getNecessaryQuery, replaceURL, setAddPageCountQuery, setPriceQuery } from "@/helperFunctions/queries";
 import { getProductsLoaderState, getUniqueArray } from "@/helperFunctions/helperClientFunctions";
 import ProductsLoader from "@/component/UI/productsLoader/productsLoader";
+import { setCookie } from "@/helperFunctions/cookie";
 
 export default function BrandsClient() {
   const router = useRouter();
@@ -60,6 +61,11 @@ export default function BrandsClient() {
   }
 
   useEffect(() => {
+    const brands = params.get('brands')
+    setCookie("brands", brands, 1);
+  }, [firstQueryParam]);
+
+  useEffect(() => {
     setPriceQuery('priceFrom', params, filtrationData)
     setPriceQuery('priceTo', params, filtrationData)
     replaceURL(router, params, pathname)
@@ -84,7 +90,7 @@ export default function BrandsClient() {
       <div className={style.brands_container}>
         <div className={style.brand_banner_container}></div>
         <div className={style.brands_filters_and_items}>
-          <Filtration isLoading={filtratioLoading} filtrationTypes={filtrationData?.data} params={params}/>
+          <Filtration isLoading={filtratioLoading} filtrationTypes={filtrationData?.data} params={params} />
           <Products
             isLoading={brandProductsLoader}
             title={t("allProducts")}

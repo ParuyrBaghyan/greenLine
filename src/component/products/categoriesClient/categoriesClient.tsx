@@ -10,16 +10,14 @@ import { useTranslations } from "use-intl";
 import { useGetCategoryNamesQuery, useLazyGetByCategoryQuery, } from "@/services/categories/categories";
 import { useInView } from "react-intersection-observer";
 import Product from "@/services/interface/product/productModel";
-import { pageCount, ProductSortEnum } from "@/types/enums";
+import { pageCount } from "@/types/enums";
 import { getDiscountQuery, getFirstQueryParam, getNecessaryQuery, replaceURL, setAddPageCountQuery, setPriceQuery } from "@/helperFunctions/queries";
 import { getPage_int, getPrice_int, getSortBy_int } from "@/helperFunctions/requests";
 import { getProductsLoaderState, getUniqueArray } from "@/helperFunctions/helperClientFunctions";
 import ProductsLoader from "@/component/UI/productsLoader/productsLoader";
-
+import { setCookie } from "@/helperFunctions/cookie";
 
 export default function CategoriesClient() {
-
-
   const router = useRouter();
   const t = useTranslations();
   const pathname = usePathname();
@@ -67,10 +65,14 @@ export default function CategoriesClient() {
   }
 
   useEffect(() => {
+    const categories = params.get('categories')   
+    setCookie("categories", categories, 1);
+  }, [firstQueryParam]);
+
+  useEffect(() => {
     setPriceQuery('priceFrom', params, filtrationData)
     setPriceQuery('priceTo', params, filtrationData)
-    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
-
+    replaceURL(router, params, pathname)
   }, [filtrationData]);
 
   useEffect(() => {

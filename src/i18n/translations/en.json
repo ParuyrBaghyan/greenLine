@@ -4,39 +4,37 @@
     "signIn": "Sign in",
     "search": "Search"
   },
-
   "trendingBrands": "Trending brands",
-
   "mobileApp": {
     "title": "Always next to you",
     "download": "Download our application and make orders from you phone"
   },
-
   "product": {
     "addToCart": "Add to basket"
   },
-
   "footer": {
     "logoText": "Dear customer, we welcome you to the online platform of the Green Line premium supermarket chain. From now on you can order the premium products available on our online platform.",
-
     "aboutCompany": {
       "title": "About company",
-      "aboutCompanyList": ["Partners", "Vacancies", "Our shops", "Bonus card"]
+      "aboutCompanyList": [
+        "Partners",
+        "Vacancies",
+        "Our shops",
+        "Bonus card"
+      ]
     },
-
     "forBuyers": {
       "title": "For buyers",
-      "forBuyersList": ["Terms and Conditions", "Privacy Policy"]
+      "forBuyersList": [
+        "Terms and Conditions",
+        "Privacy Policy"
+      ]
     },
-
     "forQuestions": "For questions and offers call from 09:00 - 00:00"
   },
-
   "searchResults": "Search result",
   "seeAll": "See all",
-
   "allProducts": "All products",
-
   "filter": "Filter",
   "filtrationTypes": {
     "categories": "Categories",
@@ -46,13 +44,18 @@
     "manufacturer": "Manufacturer"
   },
   "prodsWithDis": "Products with discount",
-  "clear":"Clear",
+  "clear": "Clear",
   "sortBy": {
     "az": "Alphabetical A - Z",
     "lh": "Price: Low to high",
     "hl": "Price: High to low",
     "za": "Alphabetical Z - A"
   },
-
-  "showMore" :"Show more"
+  "showMore": "Show more",
+  "productDetails": {
+    "detail": "Detail",
+    "country": "Country",
+    "manufacturer": "Manufacturer",
+    "productCode": "Product code"
+  }
 }

@@ -1,0 +1,15 @@
+@import "/src/styles/variables.scss";
+
+.add_to_card{
+    width: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    min-height: 52px;
+    background: #00380a;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    outline: none;
+}

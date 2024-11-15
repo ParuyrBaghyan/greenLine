@@ -1,3 +1,3 @@
 export default function formatPrice(price: number) {
-  return price.toLocaleString("en-US");
+  return price?.toLocaleString("en-US");
 }

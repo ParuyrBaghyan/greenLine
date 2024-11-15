@@ -11,19 +11,18 @@ export default function PriceInput({ value, onchange, type }: PriceInputProps) {
 
     const [mainValue, setValue] = useState(price);
 
-    const handleChange = useCallback((value: string) => {
+    const handleChange =(value: string) => {
         if (+value !== mainValue) {
             setValue(+value);
             onchange(value, type);
         }
-    }, [mainValue, onchange, type]);
+    };
 
     useEffect(() => {
         if (price !== mainValue) {
             setValue(price);
         }
-    }, [price, mainValue]);
-
+    }, [price]);
 
     return (
         <input

@@ -1,5 +1,16 @@
-.product_details_page{
+.product_details_page {
     width: 100%;
-    height: auto; 
-    margin:5vh 0vh;
+    height: auto;
+    margin: 5vh 0vh;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.product_detail_main_box {
+    width: 100%;
+    height: auto;
+    display: flex;
+    margin-top: 2vh;
+    justify-content: space-between;
 }

@@ -1,17 +1,18 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import Headers from "../headers";
+import { BASE_URL_API } from "@/helperFunctions/constants";
 
 export const categoriesApi = createApi({
   reducerPath: "categoriesApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://web-backend.innodream.com/api/",
+    baseUrl: BASE_URL_API,
     prepareHeaders: (headers) => {
-      Headers(
+     Headers({
         headers,
-        "application/json",
-        "https://greenline.yerevan-city.am",
-        "3"
-      );
+       accept: "application/json",
+       origin: "https://greenline.yerevan-city.am",
+       ostype: "3"
+     } );
       return headers;
     },
   }),

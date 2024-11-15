@@ -1,0 +1,25 @@
+@import "/src/styles/variables.scss";
+
+
+.product_path_route{
+    display: flex;
+    color: $prodPathRouteColor;
+    font-size: 18px;
+    gap: .6rem;
+    align-items: center;
+
+    &>div{
+        cursor: pointer;
+        display: flex;
+        gap: .6rem;
+
+        &:hover p{
+            color: rgba(0, 0, 0, 0.671);
+        }
+    
+    &:nth-last-child(1){
+        color: black;
+    }
+    
+    }
+}

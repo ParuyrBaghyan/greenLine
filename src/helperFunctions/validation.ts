@@ -1,13 +1,19 @@
-import { sanitizeParamsSortBy, sanitizeParamsPrice, sanitizeParamsCatBrand, sanitizeParamsPage, sanitizeParamsDicounted, sanitizeParamsBrandIds, sanitizeParamsCountryIds, } from "./validationFunctions";
+import { sanitizeParamsSortBy, sanitizeParamsPrice, sanitizeParamsCatBrand, sanitizeParamsPage, sanitizeParamsDicounted, sanitizeParamsBrandAndCategoryIds, sanitizeParamsCountryIds, } from "./validationFunctions";
 
 export function SanitizeSearchParams({ searchParams, basePath, section }: { searchParams?: any, basePath: string, section: string }) {
   const sanitizedSearchParams: any = {};
   if (searchParams?.categories) {
-    sanitizedSearchParams.categories = sanitizeParamsCatBrand(searchParams.categories);
+    sanitizedSearchParams.categories = sanitizeParamsCatBrand(searchParams.categories, basePath, section);
   }
+
+  if (searchParams?.brands) {
+    sanitizedSearchParams.brands = sanitizeParamsCatBrand(searchParams.brands, basePath, section);
+  }
+
   if (searchParams?.sortBy) {
     sanitizedSearchParams.sortBy = sanitizeParamsSortBy(searchParams.sortBy, basePath, section);
   }
+
   if (searchParams?.page) {
     sanitizedSearchParams.page = sanitizeParamsPage(searchParams.page, basePath, section);
   }
@@ -25,11 +31,15 @@ export function SanitizeSearchParams({ searchParams, basePath, section }: { sear
   }
 
   if (searchParams?.brandIds) {
-    sanitizedSearchParams.brandIds = sanitizeParamsBrandIds(searchParams.brandIds, basePath, section);
+    sanitizedSearchParams.brandIds = sanitizeParamsBrandAndCategoryIds(searchParams.brandIds, basePath, section);
   }
 
-  if (searchParams?.countrIds) {
-    sanitizedSearchParams.countrIds = sanitizeParamsCountryIds(searchParams.countrIds, basePath, section);
+  if (searchParams?.categoryIds) {
+    sanitizedSearchParams.categoryIds = sanitizeParamsBrandAndCategoryIds(searchParams.categoryIds, basePath, section);
+  }
+
+  if (searchParams?.countryIds) {
+    sanitizedSearchParams.countryIds = sanitizeParamsCountryIds(searchParams.countryIds, basePath, section);
   }
 
   return sanitizedSearchParams;
