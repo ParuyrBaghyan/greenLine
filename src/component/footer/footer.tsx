@@ -9,12 +9,17 @@ import {
   FaYoutubeSquare,
 } from "react-icons/fa";
 import InstagramSvg from "../UI/svg/instagramSvg/instagramSvg";
+import ForBuyers from "./forBuyers/forBuyers";
 
 export default function Footer() {
   const t = useTranslations();
 
+
+
   const aboutCompanyList = t.raw("footer.aboutCompany.aboutCompanyList");
-  const forBuyersList = t.raw("footer.forBuyers.forBuyersList");
+
+
+
 
   return (
     <HeadeFootLayout>
@@ -42,19 +47,7 @@ export default function Footer() {
           </span>
         </div>
 
-        <div className={style.list}>
-          <span>
-            {" "}
-            <p>{t("footer.forBuyers.title")}</p>
-            <ul>
-              {forBuyersList.map((item: string, index: number) => (
-                <li key={index}>
-                  <Link href="/">{item}</Link>
-                </li>
-              ))}
-            </ul>
-          </span>
-        </div>
+        <ForBuyers />
 
         <div className={style.contacts}>
           <span>

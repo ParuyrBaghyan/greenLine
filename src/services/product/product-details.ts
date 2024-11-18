@@ -23,7 +23,13 @@ export const productDetailsApi = createApi({
       providesTags: ["productDetailsApi"],
       keepUnusedDataFor: 300,
     }),
+
+    getRelatedProducts: builder.query({
+      query: ({productId}) => `/product/GetRelated/${productId}`,
+      providesTags: ["productDetailsApi"],
+      keepUnusedDataFor: 300,
+    }),
   }),
 });
 
-export const { useGetProductDetailsQuery } = productDetailsApi;
+export const { useGetProductDetailsQuery,  useGetRelatedProductsQuery } = productDetailsApi;

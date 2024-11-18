@@ -51,13 +51,18 @@
     "hl": "Գին` բարձրից ցածր",
     "za": "Այբբենական կարգով Ֆ-Ա"
   },
-
   "showMore": "Ցույց տալ ավելին",
-  
   "productDetails": {
-    "detail": "Մանրամասն",
-    "country": "Երկիր",
-    "manufacturer": "Արտադրող",
-    "productCode": "Ապրանքի կոդը"
-  }
+    "details": {
+      "detail": "Մանրամասն",
+      "country": "Երկիր",
+      "manufacturer": "Արտադրող",
+      "productCode": "Ապրանքի կոդը"
+    },
+    "description": "Նկարագրություն",
+    "ingredients": "Բաղադրությունը"
+  },
+  "termsAndConditions": "Դրույթներր եւ պայմանները",
+  "privacyPolicy": "Գաղտնիության քաղաքականությունը",
+  "products": "Ապրանքներ"
 }

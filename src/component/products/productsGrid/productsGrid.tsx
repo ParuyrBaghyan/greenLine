@@ -5,12 +5,12 @@ import ProductsGridLoader from "./productsGridLoader/productsGridLoader";
 
 interface ProductsGridProps {
   products: ProductModel[];
-  isLoading:boolean
+  isLoading: boolean
 }
 
-export default function ProductsGrid({products, isLoading}:ProductsGridProps) {
+export default function ProductsGrid({ products, isLoading }: ProductsGridProps) {
 
-  if(isLoading){
+  if (isLoading) {
     return <ProductsGridLoader />
   }
 

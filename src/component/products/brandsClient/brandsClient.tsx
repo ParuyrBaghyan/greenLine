@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useLazyGetByBrandQuery } from "@/services/brands/brands";
+import { useLazyGetBrandDetailsQuery, useLazyGetByBrandQuery } from "@/services/brands/brands";
 import { useGetAllProductsFilterQuery } from "@/services/filtration/filtration";
 import { useTranslations } from "use-intl";
 import BodyLayout from "@/layouts/bodyLayout/bodyLayout";
@@ -16,6 +16,7 @@ import { getDiscountQuery, getFirstQueryParam, getNecessaryQuery, replaceURL, se
 import { getProductsLoaderState, getUniqueArray } from "@/helperFunctions/helperClientFunctions";
 import ProductsLoader from "@/component/UI/productsLoader/productsLoader";
 import { setCookie } from "@/helperFunctions/cookie";
+import BrandDetails from "@/component/brandDetails/brandDetails";
 
 export default function BrandsClient() {
   const router = useRouter();
@@ -30,6 +31,7 @@ export default function BrandsClient() {
   const firstQueryParam = getFirstQueryParam(searchParams)
 
   const [getByBrand, { data: brandProductsFetchedData, isLoading: brandProductsLoader }] = useLazyGetByBrandQuery();
+  const [getBrandDetails, { data: brandDetailsFetchedData, isLoading: brandDetailsLoader }] = useLazyGetBrandDetailsQuery();
   const { data: filtrationData, isLoading: filtratioLoading } = useGetAllProductsFilterQuery({ brandId: firstQueryParam });
 
   async function fetchData({ clear }: { clear: boolean }) {
@@ -50,6 +52,8 @@ export default function BrandsClient() {
       search: null,
       sortBy: getSortBy_int(params),
     });
+    
+    await getBrandDetails({id: firstQueryParam})
 
     if (clear === true) {
       setProductsArray([])
@@ -88,7 +92,7 @@ export default function BrandsClient() {
   return (
     <BodyLayout>
       <div className={style.brands_container}>
-        <div className={style.brand_banner_container}></div>
+        <div className={style.brand_banner_container}><BrandDetails brandDetails={brandDetailsFetchedData?.data}/></div>
         <div className={style.brands_filters_and_items}>
           <Filtration isLoading={filtratioLoading} filtrationTypes={filtrationData?.data} params={params} />
           <Products

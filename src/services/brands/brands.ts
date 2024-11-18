@@ -6,12 +6,12 @@ export const brandsApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://web-backend.innodream.com/api/",
     prepareHeaders: (headers) => {
-     Headers({
+      Headers({
         headers,
-       accept: "application/json",
-       origin: "https://greenline.yerevan-city.am",
-       ostype: "3"
-     } );
+        accept: "application/json",
+        origin: "https://greenline.yerevan-city.am",
+        ostype: "3"
+      });
       return headers;
     },
   }),
@@ -21,7 +21,7 @@ export const brandsApi = createApi({
     getTrendingBrands: builder.query({
       query: () => `/Brand/GetTrendingBrand`,
       providesTags: ["brandsApi"],
-      keepUnusedDataFor: 300, 
+      keepUnusedDataFor: 300,
     }),
 
     getByBrand: builder.query({
@@ -32,7 +32,16 @@ export const brandsApi = createApi({
       }),
       providesTags: ["brandsApi"],
     }),
+
+    getBrandDetails: builder.query({
+      query: (body) => ({
+        url: `/Brand/GetProductsInBrand`,
+        method: "POST",
+        body: body,
+      }),
+      providesTags: ["brandsApi"],
+    }),
   }),
 });
 
-export const { useGetTrendingBrandsQuery, useLazyGetByBrandQuery } = brandsApi;
+export const { useGetTrendingBrandsQuery, useLazyGetByBrandQuery, useLazyGetBrandDetailsQuery } = brandsApi;

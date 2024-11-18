@@ -13,6 +13,7 @@ import { brandsApi } from "@/services/brands/brands";
 import { productsApi } from "@/services/products/products";
 import { filtrationApi } from "@/services/filtration/filtration";
 import { productDetailsApi } from "@/services/product/product-details";
+import { policyTermsApi } from "@/services/policyTerms/policyterms";
 
 export const store = configureStore({
   reducer: {
@@ -24,6 +25,7 @@ export const store = configureStore({
     [productsApi.reducerPath]: productsApi.reducer,
     [filtrationApi.reducerPath]: filtrationApi.reducer,
     [productDetailsApi.reducerPath]: productDetailsApi.reducer,
+    [policyTermsApi.reducerPath]: policyTermsApi.reducer,
     categories: categoriesReducer,
     search: searchReducer,
     products: productsRouter,
@@ -39,7 +41,8 @@ export const store = configureStore({
       brandsApi.middleware,
       productsApi.middleware,
       filtrationApi.middleware,
-      productDetailsApi.middleware
+      productDetailsApi.middleware,
+      policyTermsApi.middleware
     ),
 });
 

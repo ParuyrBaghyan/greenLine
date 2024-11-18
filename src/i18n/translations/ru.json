@@ -52,11 +52,19 @@
     "za": "По алфавиту Я - А"
   },
   "showMore": "Показать больше",
-  
   "productDetails": {
-    "detail": "Подробнее",
-    "country": "Страна",
-    "manufacturer": "Производитель",
-    "productCode": "Код продукта"
-  }
+    "details": {
+      "detail": "Подробнее",
+      "country": "Страна",
+      "manufacturer": "Производитель",
+      "productCode": "Код продукта"
+    },
+    "description": "Описание",
+    "ingredients": "Ингредиенты"
+  },
+
+  "termsAndConditions":"Условия и положения:",
+  "privacyPolicy": "Политику конфиденциальности",
+
+  "products" : "Товары"
 }

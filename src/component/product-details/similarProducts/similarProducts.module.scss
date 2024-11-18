@@ -1,0 +1,20 @@
+@import "/src/styles/mixin.scss";
+
+.similar_products{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    .title_loader{
+        width: 15%;
+        height: 30px;
+        border-radius: 5px;
+        @include baseLoaderStyle
+    }
+
+    &>div > a{
+        min-width:270px !important;
+    }
+}
+
+@include baseLoaderAnimation
